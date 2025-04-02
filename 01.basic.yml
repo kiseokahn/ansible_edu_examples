@@ -1,0 +1,9 @@
+---
+- name: Configure important user consistently
+  hosts: all
+  tasks:
+    - name: Configure user consistently
+      user:
+        name: newbie
+        uid: 4000
+        state: present 

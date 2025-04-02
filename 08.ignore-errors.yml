@@ -1,0 +1,17 @@
+---
+- name: Task Failure Exercise
+  hosts: all
+  vars:
+    httpd_service: http
+    nginx_service: nginx
+  tasks:
+    - name: Install {{ httpd_service }} package
+      yum:
+        name: "{{ httpd_service }}"
+        state: present
+      ignore_errors: yes
+
+    - name: Install {{ nginx_service }} package
+      yum:
+        name: "{{ nginx_service }}"
+        state: present

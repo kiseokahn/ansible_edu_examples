@@ -1,0 +1,22 @@
+---
+- name: Loop Register Test
+  gather_facts: no
+  hosts: all
+  tasks:
+    - name: Create User1 by non-loop style
+      user:
+        name: user1
+        state: present
+
+    - name: Create User2 by non-loop style
+      user:
+        name: user2
+        state: present
+
+    - name: Create User3, User4 by loop sequence
+      user:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - user3
+        - user4

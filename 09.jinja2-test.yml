@@ -1,0 +1,19 @@
+---
+- name: jinja2 test
+  hosts: all
+  tasks:
+    - name: install httpd
+      yum:
+        name: httpd
+        state: latest
+
+    - name: start sevice httpd
+      service:
+        name: httpd
+        enabled: yes
+        state: started
+
+    - name: crate index.html
+      template:
+        src: index.html.j2
+        dest: /var/www/html/index.html

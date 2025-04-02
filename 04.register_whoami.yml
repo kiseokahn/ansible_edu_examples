@@ -1,0 +1,15 @@
+---
+- name: Verify Register Function
+  hosts: all
+  tasks:
+    - name: Verify Who am I
+      shell: whoami
+      register: whoami_result
+
+    - name: Print Whoami
+      debug:
+        var: whoami_result
+
+    - name: Print Whoami
+      debug:
+        msg: 'Ansible has been Connected by {{ whoami_result.stdout }}'

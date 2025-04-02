@@ -1,0 +1,18 @@
+---
+- name: Test for Facts
+  hosts: all
+  tasks:
+    - name: Install httpd package
+      yum:
+        name: httpd
+        state: present
+
+    - name: Change index.html
+      copy:
+        content: "My Hostname is {{ ansible_facts.fqdn }} and IP is {{ ansible_facts.default_ipv4.address }} \n"
+        dest: /var/www/html/index.html
+
+    - name: Restart Web Server
+      service:
+        name: httpd
+        state: restarted

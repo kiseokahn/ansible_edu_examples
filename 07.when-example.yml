@@ -1,0 +1,16 @@
+---
+- name: Demonstrate the "in" keyword
+  hosts: all
+  gather_facts: yes
+  vars:
+    supported_distros:
+      - RedHat
+      - Ubuntu
+      - Windows
+      - CentOS
+  tasks:
+    - name: Install mariadb-server using yum, where supported
+      yum:
+        name: mariadb-server
+        state: latest
+      when: ansible_distribution in supported_distros

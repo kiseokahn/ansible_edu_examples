@@ -1,0 +1,19 @@
+---
+- name: Install and start Apache HTTPD
+  hosts: all
+  tasks:
+    - name: Install httpd package
+      yum:
+        name: httpd
+        state: present
+
+    - name: Deploy index.html Web Page to Apache
+      copy:
+        src: files/index.html
+        dest: /var/www/html/index.html
+
+    - name: httpd is started
+      service:
+        name: httpd
+        state: started
+        enabled: true
